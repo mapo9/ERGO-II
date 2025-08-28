@@ -33,9 +33,9 @@ one for the McPAS database and one for VDJdb.
 
 Run:
 ```commandline
-python Predict.py dataset file
+python Predict.py dataset file out_path
 ```
-Where `dataset` is `mcpas` or `vdjdb` and `datafile` is the csv file to predict.
+Where `dataset` is `mcpas` or `vdjdb`, `datafile` is the csv file to predict and `out_path` is the filepath to store the csv. 
 See the website and [this example](example.csv) for the right datafile format.
 
 ## References

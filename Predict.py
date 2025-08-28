@@ -102,7 +102,10 @@ def predict(dataset, test_file):
 if __name__ == '__main__':
     df = predict(sys.argv[1], sys.argv[2])
     print(df)
-    # df.to_csv('results.csv', index=False)
+    # ====== DIFFERING FROM ORIGINAL SCRIPT ======
+    # had script saving outcommented and not as command line
+    df.to_csv(sys.argv[3], index=False)
+    # ====== DIFFERING FROM ORIGINAL SCRIPT - END ======
     pass
 
 

@@ -102,12 +102,19 @@ class AE_Encoder(nn.Module):
         self.init_ae_params(train_ae)
 
     def init_ae_params(self, train_ae=True):
-        ae_dir = 'TCR_Autoencoder'
+        # ====== DIFFERING FROM ORIGINAL SCRIPT ======
+        # their paths were not correct
+        ae_dir = 'Models/AE'
+        # ====== DIFFERING FROM ORIGINAL SCRIPT - END ======
         if self.tcr_type == 'alpha':
             ae_file = os.sep.join([ae_dir, 'tcra_ae_dim_' + str(self.encoding_dim) + '.pt'])
         elif self.tcr_type == 'beta':
             ae_file = os.sep.join([ae_dir, 'tcrb_ae_dim_' + str(self.encoding_dim) + '.pt'])
-        checkpoint = torch.load(ae_file)
+        # ====== DIFFERING FROM ORIGINAL SCRIPT ======
+        # orig is gpu only
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        # ====== DIFFERING FROM ORIGINAL SCRIPT - END ======
+        checkpoint = torch.load(ae_file, map_location=device)
         self.autoencoder.load_state_dict(checkpoint['model_state_dict'])
         if train_ae is False:
             for param in self.autoencoder.parameters():
